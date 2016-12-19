@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+.fenye{
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  
+
+
+}
+
+</style>
+</head>
+<body>
+<div ng-controller="myCtrl" ng-init="user=['tian','mingda']">
+  <p><h2>当前时间:{{time}}</h2></p>
+  <p>输入起始日期: <input type="text" class="form-control" ng-model="startDate"/></p>
+  <p>输入结束日期: <input type="text" class="form-control" ng-model="endDate"/></p>
+  <p>{{startDate}}---------------{{endDate}}</p>
+  <button ng-click="submit(0)">提交</button>
+   <h1><p><span draggable>Hello {{user[0]+" "+user[1]}}</span></p></h1>
+	<!-- <h1 ng-show="flag">{{myWelcome}}</h1> -->
+	<div draggable2 class="col-md-8" ng-show="flag">
+	 <table  class="table table-hover table-condensed table-bordered table-striped">
+	 <thead><td>日期</td><td>基金简称</td><td>证券简称</td><td>证券代码</td><td>交易方向</td><td>交易价格</td><td>交易数量</td></thead>
+    <!-- <li ng-repeat="x in myWelcome">
+      {{x.fundSecuAbbr}}
+    </li> -->
+    <tbody><tr ng-repeat="x in myWelcome"><td>{{x.endDateJson}}</td><td>{{x.fundSecuAbbr}}</td><td>{{x.secuAbbr}}</td><td>{{x.secuCode}}</td><td>{{x.entrustDirection}}</td><td>{{x.dealPrice}}</td><td>{{x.dealVolume}}</td></tr></tbody>
+  </table>
+  <div class="fenye">
+  <ul class="pagination">
+  <li ng-repeat="x in pagecount"><a href="#" ng-click="submit(x)">{{ x }}</a></li>  
+  </ul>
+  <span>共:{{count}}条</span> 
+  </div>
+  </div>
+  <span><button ng-click="flags()">点击显示/隐藏</button></span>
+</div>
+<div class="upload">
+	<form action="/upload" enctype="multipart/form-data" method="post">
+	<input type="file" name="files"/><br/>
+	<input type="submit" value="上传"/>
+	</form>
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>
+
+
+
+
